@@ -1,0 +1,13 @@
+PASOS RAPIDOS (el proyecto ya trae frontend Next.js, API Laravel y MySQL)
+
+1. cp .env.example .env
+2. Genera el APP_KEY y pegalo en .env:
+     echo "base64:$(openssl rand -base64 32)"
+3. (Recomendado) Genera backend/composer.lock para que los builds sean reproducibles:
+     docker run --rm -v "$PWD/backend":/app -w /app composer:2 \
+       composer update --no-install --no-scripts --ignore-platform-reqs
+   En PowerShell usa ${PWD} en vez de $PWD.
+4. docker compose up -d --build
+5. docker compose ps          (los 3 deben decir "healthy")
+6. Frontend: http://localhost:3000  |  API: http://localhost:8000/api/products
+7. docker images | grep docker-ecosystem   (para llenar la tabla de tamanos del README)
